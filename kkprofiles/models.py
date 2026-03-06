@@ -2,6 +2,7 @@ from django.db import models
 
         
 class ProfilingInformations(models.Model):
+        
         class SexChoices(models.TextChoices):
             MALE = "male", "Male"
             FEMALE = "female", "Female"

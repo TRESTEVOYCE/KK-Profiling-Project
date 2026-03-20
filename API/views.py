@@ -5,12 +5,10 @@ from kkprofiles.serializers import ProfilingInformationsSerializer, KKAddressSer
 from kkprofiles.models import ProfilingInformations,KKAddress,YouthStatus
 from events.serializers import EventSerializer
 from events.models import Event
-from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 
 
-#used functions to return data in json format for now will be changed to class based views in the future
-
+#used for user accounts like editing a username and such 
 class UserList(APIView):
 
     def get(self, request,pk = None):

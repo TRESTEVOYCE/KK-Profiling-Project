@@ -1,20 +1,18 @@
-from django.urls import path
-from API import views
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,)
+from rest_framework.routers import DefaultRouter
+from API.views import (
+    UserViewSet,
+    ProfilingInformationsViewSet,
+    KKAddressViewSet,
+    YouthStatusViewSet,
+    EventViewSet
+)
 
-urlpatterns = [
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('users/', views.UserList.as_view(), name='user-list'),
-    path('users/<int:pk>/', views.UserList.as_view(), name='user-detail'),
-    path('profiling-informations/', views.ProfilingInformationsList.as_view(), name='profiling-informations-list'),
-    path('profiling-informations/<int:pk>/', views.ProfilingInformationsList.as_view(), name='profiling-informations-detail'),
-    path('kk-addresses/', views.KKAddressList.as_view(), name='kk-address-list'),
-    path('kk-addresses/<int:pk>/', views.KKAddressList.as_view(), name='kk-address-detail'),
-    path('youth-statuses/', views.YouthStatusList.as_view(), name='youth-status-list'),
-    path('youth-statuses/<int:pk>/', views.YouthStatusList.as_view(), name='youth-status-detail'),
-    path('events/', views.EventList.as_view(), name='event-list'),
-    path('events/<int:pk>/', views.EventList.as_view(), name='event-detail'),
-]
+router = DefaultRouter()
+
+router.register(r'users', UserViewSet, basename='user')
+router.register(r'profiling-informations', ProfilingInformationsViewSet, basename='profiling-informations')
+router.register(r'kk-addresses', KKAddressViewSet, basename='kk-address')
+router.register(r'youth-statuses', YouthStatusViewSet, basename='youth-status')
+router.register(r'events', EventViewSet, basename='event')
+
+urlpatterns = router.urls

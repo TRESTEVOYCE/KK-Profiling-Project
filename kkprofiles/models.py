@@ -48,7 +48,7 @@ class ProfilingInformations(models.Model):
         
 class KKAddress(models.Model):
 
-        kk_name = models.ForeignKey(ProfilingInformations,on_delete=models.CASCADE, related_name='address')
+        kk_name = models.OneToOneField(ProfilingInformations,on_delete=models.CASCADE, related_name='address')
         region = models.CharField(max_length=255)
         province = models.CharField(max_length=255)
         municipality_or_city = models.CharField(max_length=255)
@@ -84,7 +84,7 @@ class YouthStatus(models.Model):
             LOOKING_FOR_JOB = "looking_for_job", "Currently Looking for a Job"
             NOT_LOOKING_FOR_JOB = "not_looking_for_job", "Not Interested in Looking for a Job"
        
-        kk_name = models.ForeignKey(ProfilingInformations,on_delete=models.CASCADE, related_name='youth_status')
+        kk_name = models.OneToOneField(ProfilingInformations,on_delete=models.CASCADE, related_name='youth_status')
         youth_classification = models.CharField(max_length=50,choices=YouthClassificationChoices,blank=True,null=True)
         youth_age_group = models.CharField(max_length=50,choices=YouthAgeGroupChoices.choices,blank=True,null=True)
         youth_with_specific_needs = models.CharField(max_length=50,choices=YouthWithSpecificNeedsChoices,blank=True)
